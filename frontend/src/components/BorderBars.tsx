@@ -1,7 +1,6 @@
-import { AppBar, Box, Divider, Grid, styled, Toolbar, Typography } from "@mui/material";
-import React from "react";
+import { AppBar, Box, Grid, styled, Toolbar, Typography } from "@mui/material";
 // import Breadcrumbs from "../Breadcrumbs";
-import { LogoBanner, ECMWFLogo, ThisAppLogo } from "./Logos";
+import { LogoBanner, ThisAppLogo } from "./Logos";
 
 const StyledHeadBar = styled(AppBar)(({ theme }) => `
   zIndex: 0;

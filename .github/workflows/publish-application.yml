@@ -40,10 +40,10 @@ jobs:
       uses: docker/setup-buildx-action@v3
       with:
         buildkitd-flags: --debug
-    - name: Build the Docker image
+    - name: Build the Frontend Docker image
       uses: docker/build-push-action@v5
       with: 
-        context: .
+        context: frontend
         platforms: linux/amd64
         push: true
         build-args: environment=${{ env.DEPLOYMENT_ENVIRONMENT }}

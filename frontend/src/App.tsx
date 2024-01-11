@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Box, CssBaseline, styled } from '@mui/material';
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -12,7 +11,6 @@ const AppContainer = styled(Box)`
 `;
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <AppContainer>

@@ -1,6 +1,6 @@
-# HELLO-WORLD application
+# HELLO-WORLD Material UI application
 
-This repo contains a boiler plate application with the github actions setup to deploy on the CADS
+This repo contains a boiler plate Material UI application with the github actions setup to deploy on the CADS
 
 ## Create the application
 
@@ -16,13 +16,13 @@ Ensure that you have docker and all the pre-requistes installed and running
 **Build local image to test with**
 
 ```bash
-docker build -t hello-world:latest .
+docker build -t hello-world-mui:latest .
 ```
 
 **Run the local image**
 
 ```
-docker run -p 8080:8501 hello-world:latest
+docker run -p 8080:80 hello-world-mui:latest
 ```
 
 In the above example we map the port used by the application (8501, default of streamlit),

@@ -1,18 +1,28 @@
-# Set the base image
-FROM continuumio/miniconda3
+# PREPARE STAGE
+FROM node:16 AS prepare
 
-# Set the working directory
-WORKDIR /app
+ARG environment
 
-# Copy the application code
-COPY requirements.txt /app
-COPY hello-world.py /app
+# Install frontend app in required location
+ENV FRONTEND_BUILD_LOC=/app/frontend
+WORKDIR ${FRONTEND_BUILD_LOC}
+COPY frontend/* ${FRONTEND_BUILD_LOC}
+COPY environments/.env.${environment} ${FRONTEND_BUILD_LOC}/.env
 
-# Install dependencies
-RUN pip install -r requirements.txt
+RUN npm install
 
-# Expose the port on which the application will run, by default streamlit runs on port 8501
-EXPOSE 8501
+FROM prepare AS development
 
-# Start the application
-CMD ["streamlit", "run", "hello-world.py"]
+EXPOSE 3000
+CMD ["npm", "start"]
+
+FROM prepare AS build
+WORKDIR ${FRONTEND_BUILD_LOC}
+RUN npm run build
+
+FROM nginx:1.21-alpine
+COPY --from=build ${FRONTEND_BUILD_LOC}/build /usr/share/nginx/html/
+RUN rm -f /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d/
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,5 +1,5 @@
 # PREPARE STAGE
-FROM node:20 AS prepare
+FROM node:16 AS prepare
 
 ARG environment=local
 
@@ -10,23 +10,15 @@ COPY src/ /app/src
 COPY package*.json tsconfig*.json index.html /app/
 COPY environments/.env.${environment} /app/.env
 
-
-RUN \
-  --mount=type=cache,target=/usr/local/share/.cache/yarn/v6 \
-  set -eux \
-  && yarn install
+RUN npm install
 
 FROM prepare AS development
 
-EXPOSE 5173
-CMD ["yarn", "start"]
+EXPOSE 3000
+CMD ["npm", "start"]
 
 FROM prepare AS build
-RUN \
-  --mount=type=cache,target=/usr/local/share/.cache/yarn/v6 \
-  set -eux \
-  && yarn build
-# CMD ["tail", "-f", "/dev/null"]
+RUN npm run build
 
 FROM nginx:1.21-alpine
 COPY --from=build /app/dist /usr/share/nginx/html/

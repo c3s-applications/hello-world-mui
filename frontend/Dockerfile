@@ -1,14 +1,14 @@
 # PREPARE STAGE
 FROM node:16 AS prepare
 
-ARG environment=local
+# ARG environment=local
 
 WORKDIR /app
 
 COPY public/ /app/public
 COPY src/ /app/src
-COPY package*.json tsconfig*.json index.html /app/
-COPY environments/.env.${environment} /app/.env
+COPY package*.json tsconfig*.json index.html vite.config.ts /app/
+# COPY environments/.env.${environment} /app/.env
 
 RUN npm install
 

@@ -1,6 +1,8 @@
-import { AppBar, Box, Grid, styled, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Divider, Grid, styled, Toolbar, Typography } from "@mui/material";
+import ReactMarkdown from 'react-markdown'
 // import Breadcrumbs from "../Breadcrumbs";
 import { LogoBanner, ThisAppLogo } from "./Logos";
+import { useEffect, useState } from "react";
 
 const StyledHeadBar = styled(AppBar)(({ theme }) => `
   zIndex: 0;
@@ -36,6 +38,21 @@ export const HeaderBar = () => {
   )
 }
 
+const MarkdownFromFile = ({markdown_file="text.md"}) => {
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    fetch(markdown_file)
+      .then((res) => res.text())
+      .then((text) => setContent(text));
+  }, []);
+  return (
+    <div>
+      <ReactMarkdown children={content}/>
+    </div>
+  );
+}
+
 export const FooterBar = () => {
   return (
     <StyledFootBar color="secondary" position="static">
@@ -43,13 +60,8 @@ export const FooterBar = () => {
         <Grid container columns={1} justifyContent="center" textAlign='left' >
           <Grid item sx={{ width: 3/4 }}><LogoBanner mode='negative' class="logo-resize"/></Grid>
           <Grid item sx={{ width: 3/4 }} >
-            <StyledTypography variant="h3">
-              Application Title
-            </StyledTypography>
-            The <a href='https://climate.copernicus.eu/'>Copernicus Climate Change Service (C3S)</a>, implemented by the
-            European Centre for Medium-Range Weather Forecasts (ECMWF)
-            on behalf of the European Commission is part of the European Union's space programme.
-            <p></p>
+            <Divider light={true}/>
+            <MarkdownFromFile markdown_file="standard-texts/implemented.md"/>
           </Grid>
         </Grid>
       </Toolbar>

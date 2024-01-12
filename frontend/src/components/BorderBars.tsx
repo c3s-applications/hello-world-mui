@@ -15,14 +15,14 @@ const StyledFootBar = styled(AppBar)(({ theme }) => `
   zIndex: 0;
   
   &.MuiPaper-root {
-    background: ${theme.palette.secondary.main};
-    color: ${theme.palette.secondary.contrastText};
+    background: ${theme.palette.tertiary.main};
+    color: ${theme.palette.tertiary.contrastText};
   }
 `);
 
 export const HeaderBar = () => {
   return (
-    <StyledHeadBar color="primary" position="static">
+    <StyledHeadBar position="static">
       <Toolbar variant="dense">
         <Box sx={{ width: 1/3 }}><ThisAppLogo mode='negative' class="logo-resize"/></Box>
         <Box sx={{ flexGrow: 1 }} />
@@ -34,7 +34,7 @@ export const HeaderBar = () => {
 
 export const FooterBar = () => {
   return (
-    <StyledFootBar color="secondary" position="static">
+    <StyledFootBar position="static">
       <Toolbar variant="dense">
         <Grid container columns={1} justifyContent="center" textAlign='left' >
           <Grid item sx={{ width: 3/4 }}><LogoBanner mode='negative' class="logo-resize"/></Grid>

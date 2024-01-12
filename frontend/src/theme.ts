@@ -6,12 +6,14 @@ import { responsiveFontSizes } from '@mui/material';
 
 declare module '@mui/material/styles' {
   interface Palette {
+    tertiary: PaletteColor;
     navigation: PaletteColor;
     link: PaletteColor;
     accent: PaletteColor;
   }
 
   interface PaletteOptions {
+    tertiary: PaletteColorOptions;
     navigation?: PaletteColorOptions;
     link?: PaletteColorOptions;
     accent?: PaletteColorOptions;
@@ -29,13 +31,17 @@ declare module '@mui/material/styles' {
 const theme = createTheme({
   palette: {
     background: {
-      default: '#f1f1f1'
+      default: '#ffffff'
     },
     primary: {
       main: 'rgb(143, 33, 33)',
       contrastText: '#ffffff'
     },
     secondary: {
+      main: '#f1f1f1',
+      contrastText: '#ffffff'
+    },
+    tertiary: {
       main: '#232323',
       contrastText: '#ffffff'
     },

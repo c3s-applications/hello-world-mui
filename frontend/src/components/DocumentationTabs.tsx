@@ -3,8 +3,19 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Container } from '@mui/material';
+import { Container, styled } from '@mui/material';
 import { MarkdownFromFile } from './FromFile';
+
+const StyledDocPanel = styled(Box)(({ theme }) => `
+  zIndex: 1;
+  background: ${theme.palette.background.default};
+`);
+
+const StyledDocBackground = styled(Box)(({ theme }) => `
+  zIndex: 1;
+  background: ${theme.palette.secondary.main};
+  color: ${theme.palette.secondary.contrastText};
+`);
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -15,7 +26,6 @@ interface TabPanelProps {
 
 function DocTabPanel(props: TabPanelProps) {
   const { children, value, index, this_tab, ...other } = props;
-  console.log(index, value)
   return (
     <div
       role="tabpanel"
@@ -25,20 +35,13 @@ function DocTabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
+        <StyledDocPanel position="static" textAlign='left' sx={{p:2}} >
+            <Typography color="#121212">{children}</Typography>
+        </StyledDocPanel>
       )}
     </div>
   );
 }
-
-
-interface DocTabProps {
-    this_tab: string;
-    index: number;
-  }
-
 
 function a11yProps(index: number, this_tab: string) {
     return {
@@ -67,16 +70,18 @@ export default function BasicTabs() {
         </DocTabPanel>
     )
   }
-
-
   return (
-    <Container maxWidth="sm" disableGutters={true}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="documentation tabs">
-          {tab_buttons}
-        </Tabs>
-      </Box>
-      {tab_contents}
+    <Container maxWidth="md" >
+        <StyledDocBackground sx={{p:2}}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs value={value} onChange={handleChange} aria-label="documentation tabs">
+                    {tab_buttons}
+                </Tabs>
+            </Box>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                {tab_contents}
+            </Box>
+        </StyledDocBackground>
     </Container>
   );
 }

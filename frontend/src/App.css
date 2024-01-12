@@ -6,6 +6,11 @@
   /* base-palette: rgb(143, 33, 33); */
 }
 
+.standard.text {
+  font-size: 1.2rem !important;
+}
+
+
 .logo {
   height: 6em;
   padding: 1.5em;

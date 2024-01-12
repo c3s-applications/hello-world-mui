@@ -35,6 +35,11 @@ h1 {
   line-height: 1.1;
 }
 
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;

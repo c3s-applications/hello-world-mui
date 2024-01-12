@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Container, styled } from '@mui/material';
 import { MarkdownFromFile } from './FromFile';
+import theme from '../theme';
 
 const StyledDocPanel = styled(Box)(({ theme }) => `
   zIndex: 1;
@@ -50,7 +51,7 @@ function a11yProps(index: number, this_tab: string) {
     };
   }
 
-export default function BasicTabs() {
+export default function DocumentationTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -72,7 +73,7 @@ export default function BasicTabs() {
   }
   return (
     <Container maxWidth="md" >
-        <StyledDocBackground sx={{p:2}}>
+        <StyledDocBackground sx={{p:2, borderTop: 2, borderRadius: 1, borderColor: theme.palette.primary.main}}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="documentation tabs">
                     {tab_buttons}
@@ -82,6 +83,7 @@ export default function BasicTabs() {
                 {tab_contents}
             </Box>
         </StyledDocBackground>
+        <p></p>
     </Container>
   );
 }

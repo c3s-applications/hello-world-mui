@@ -3,7 +3,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 // import { ECMWFLogo, LogoBanner, LogoBox } from './components/Logos' 
 import {FooterBar, HeaderBar} from './components/BorderBars'
-import BasicTabs from './components/DocumentationTabs';
+import DocumentationTabs from './components/DocumentationTabs';
+import { PlotlyChartInline, PlotlyChartFromFile } from './components/PlotlyChart';
 
 const AppContainer = styled(Box)`
   display: flex;
@@ -20,11 +21,15 @@ function App() {
         <HeaderBar/>
       </div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+        <p></p>
+        <a href="https://en.wikipedia.org/wiki/Christopher_Walken" target="_blank">
+          <img src="for-fun/walken.gif" className="walken" alt="Walken" />
         </a>
+        <p></p>
       </div>
-      <div><BasicTabs/></div>
+      <div><PlotlyChartInline/></div>
+      <div><PlotlyChartFromFile/></div>
+      <div><DocumentationTabs/></div>
       <div>
         <FooterBar/>
       </div>

@@ -1,4 +1,4 @@
-import { AppBar, Box, Divider, Grid, styled, Toolbar } from "@mui/material";
+import { AppBar, Box, Container, Divider, Grid, styled, Toolbar } from "@mui/material";
 import { LogoBanner, ThisAppLogo } from "./Logos";
 import { MarkdownFromFile } from "./FromFile";
 
@@ -11,22 +11,21 @@ const StyledHeadBar = styled(AppBar)(({ theme }) => `
   }
 `);
 
-const StyledFootBar = styled(AppBar)(({ theme }) => `
+const StyledFootBar = styled(Container)(({ theme }) => `
   zIndex: 0;
-  
-  &.MuiPaper-root {
-    background: ${theme.palette.tertiary.main};
-    color: ${theme.palette.tertiary.contrastText};
-  }
+  background: ${theme.palette.tertiary.main};
+  color: ${theme.palette.tertiary.contrastText};
 `);
 
 export const HeaderBar = () => {
   return (
-    <StyledHeadBar position="static">
-      <Toolbar variant="dense">
-        <Box sx={{ width: 1/3 }}><ThisAppLogo mode='negative' class="logo-resize"/></Box>
+    <StyledHeadBar position="static" >
+      <Toolbar sx={{p:1}} >
+        <Box sx={{ width: "30%", maxHeight: 115 }} alignItems="center">
+          <ThisAppLogo mode='negative' class="logo-resize" />
+        </Box>
         <Box sx={{ flexGrow: 1 }} />
-        <Box sx={{ width: 1/2 }} ><LogoBanner mode='negative' class="logo-resize" /></Box>
+        <Box sx={{ width: "60%" }} ><LogoBanner mode='negative' class="logo-resize" /></Box>
       </Toolbar>
     </StyledHeadBar>
   )
@@ -34,8 +33,8 @@ export const HeaderBar = () => {
 
 export const FooterBar = () => {
   return (
-    <StyledFootBar position="static">
-      <Toolbar variant="dense">
+    <StyledFootBar>
+      <Toolbar variant="dense" >
         <Grid container columns={1} justifyContent="center" textAlign='left' >
           <Grid item sx={{ width: 3/4 }}><LogoBanner mode='negative' class="logo-resize"/></Grid>
           <Grid item sx={{ width: 3/4 }} >

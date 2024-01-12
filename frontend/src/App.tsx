@@ -3,6 +3,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 // import { ECMWFLogo, LogoBanner, LogoBox } from './components/Logos' 
 import {FooterBar, HeaderBar} from './components/BorderBars'
+import BasicTabs from './components/DocumentationTabs';
 
 const AppContainer = styled(Box)`
   display: flex;
@@ -23,6 +24,7 @@ function App() {
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
       </div>
+      <div><BasicTabs/></div>
       <div>
         <FooterBar/>
       </div>
